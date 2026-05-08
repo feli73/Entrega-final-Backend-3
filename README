@@ -2,7 +2,7 @@ Entrega Final Backend III
 🧠 Descripción del proyecto
 
 API REST desarrollada con Node.js y Express para la gestión de adopciones.
-Incluye arquitectura en capas (controller, service, repository), tests funcionales, unitarios y de performance, además de containerización con Docker.
+Incluye arquitectura en capas (controller, service, repository), tests funcionales, unitarios y de performance, además de containerización con Docker y despliegue en Render.
 
 📁 Estructura del proyecto
 /src
@@ -28,6 +28,8 @@ Incluye arquitectura en capas (controller, service, repository), tests funcional
    adoption.routes.test.js
   /adoption.service.test.js
   /test.yml
+
+
 
 Dockerfile
 docker-compose.yml
@@ -142,6 +144,8 @@ Model → estructura de datos
 ✔ separación de responsabilidades
 ✔ testabilidad
 
+
+
 🐳 Dockerización
 📄 Dockerfile
 FROM node:20-alpine
@@ -192,9 +196,6 @@ docker pull felipe73/adoption-api:1
 
 
 
-⚙️ Variables de entorno
-PORT=8080
-NODE_ENV=production
 🚀 Ejecución completa del proyecto
 1. Instalar dependencias
 npm install
@@ -237,6 +238,18 @@ El endpoint de actualización utiliza el siguiente esquema:
 
 ```
 
+
+## 🚀 Deploy en Render
+
+La aplicación se encuentra desplegada públicamente en Render.
+
+### 🌐 API online
+
+https://entrega-final-backend-3.onrender.com/api/adoptions
+
+### 📚 Swagger Documentation
+
+https://entrega-final-backend-3.onrender.com/api-docs
 
 
 
