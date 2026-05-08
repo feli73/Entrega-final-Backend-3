@@ -1,0 +1,14 @@
+
+
+config:
+  target: "http://localhost:8080"
+  phases:
+    - duration: 30
+      arrivalRate: 5
+
+scenarios:
+  - name: "Get all adoptions"
+    flow:
+      - get:
+          url: "/api/adoptions"
+

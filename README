@@ -1,0 +1,273 @@
+Entrega Final Backend III
+🧠 Descripción del proyecto
+
+API REST desarrollada con Node.js y Express para la gestión de adopciones.
+Incluye arquitectura en capas (controller, service, repository), tests funcionales, unitarios y de performance, además de containerización con Docker.
+
+📁 Estructura del proyecto
+/src
+  /controllers
+    /adoptionController.js
+
+  /routes
+    /adoptionRouter.js
+
+  /services
+    /adoptionService.js
+
+  /repositories
+    /adoptionRepository.js
+
+  /models
+    /adoptionModel.js
+
+  app.js
+  server.js
+
+/test/
+   adoption.routes.test.js
+  /adoption.service.test.js
+  /test.yml
+
+Dockerfile
+docker-compose.yml
+package.json
+.env
+README.md
+🧪 Tests funcionales
+🧰 Tecnologías usadas
+Mocha
+Chai
+Supertest
+Artillery (performance)
+📌 Cobertura de tests
+🔹 Tests de integración (routes)
+
+Se testean todos los endpoints de:
+
+/api/adoptions
+
+✔ POST create adoption
+✔ GET all adoptions
+✔ GET by ID
+✔ PUT update adoption
+✔ DELETE adoption
+✔ validaciones de error (400 / 404)
+
+🔹 Tests unitarios (service layer)
+
+Se testea la lógica del servicio:
+
+✔ create
+✔ getAll
+✔ getById
+✔ update
+✔ delete
+
+🔹 Tests de performance (Artillery)
+
+Se evalúa carga del endpoint:
+
+GET /api/adoptions
+
+✔ 30 segundos
+✔ 5 requests por segundo
+✔ validación de estabilidad bajo carga
+
+
+
+
+
+▶️ Ejecución de tests
+
+npm install
+npm test           # unit + integration
+npm run test:performance
+
+
+IMPORTANTE:  
+Para ejecutar los tests de performance es necesario tener el servidor levantado previamente, ya que Artillery realiza peticiones HTTP reales contra la API.
+el servidor debe estar levantado: 
+
+- Local: http://localhost:8080
+- Docker: http://localhost:3000
+
+### 1. Levantar el servidor
+
+npm start
+
+
+📸 Evidencia
+
+🧪Tests unitarios e integración
+
+npm test
+
+16 passing (155ms)
+
+
+📈 Test de performance (Artillery)
+npm run test:performance
+
+Summary report:
+
+✔ 150 requests totales
+✔ 0 errores
+✔ request rate: 5/sec
+✔ mean response time: 0.8 ms
+✔ p95: 1 ms
+✔ p99: 2 ms
+
+
+
+
+**Conclusión:**
+
+La API responde de forma estable bajo carga, sin errores y con tiempos de respuesta bajos.  
+Al utilizar persistencia en memoria, los tiempos son óptimos, aunque en un entorno productivo con base de datos pueden variar.
+
+
+
+
+🧠 Arquitectura del proyecto
+
+El proyecto sigue una arquitectura en capas implementada mediante módulos separados:
+
+Controller → requests/responses
+Service → lógica de negocio
+Repository → persistencia en memoria
+Model → estructura de datos
+
+✔ escalabilidad
+✔ separación de responsabilidades
+✔ testabilidad
+
+🐳 Dockerización
+📄 Dockerfile
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm ci --omit=dev
+
+COPY . .
+
+EXPOSE 8080
+
+ENV NODE_ENV=production
+ENV PORT=8080
+
+CMD ["npm", "start"]
+
+⚙️ Explicación
+
+✔ imagen liviana (alpine)
+✔ instalación reproducible
+✔ optimización de capas
+✔ entorno productivo
+✔ puerto configurable
+
+🏗 Build de imagen
+docker build -t adoption-api:1 .
+▶️ Ejecución
+docker run -p 3000:8080 felipe73/adoption-api:1
+🌐 Acceso API
+http://localhost:3000/api/adoptions
+
+
+
+☁️ DockerHub
+
+📦 Imagen publicada
+Repositorio: felipe73/adoption-api
+Tag: 1
+
+🔗 URL 👉 https://hub.docker.com/r/felipe73/adoption-api
+
+
+### Descargar imagen
+docker pull felipe73/adoption-api:1
+
+
+
+⚙️ Variables de entorno
+PORT=8080
+NODE_ENV=production
+🚀 Ejecución completa del proyecto
+1. Instalar dependencias
+npm install
+1. Levantar servidor con Docker
+docker run -p 3000:8080 felipe73/adoption-api:1
+
+
+
+
+## 📚 Documentación con Swagger
+
+Este proyecto cuenta con documentación interactiva generada con Swagger (OpenAPI 3.0).
+
+Swagger permite visualizar y probar todos los endpoints de la API de forma interactiva desde el navegador.
+
+### 🔗 Acceso a la documentación
+
+- Local (Docker o Node):
+  http://localhost:8080/api-docs
+
+### 📌 Funcionalidades documentadas
+
+La API incluye documentación completa de los siguientes endpoints:
+
+- POST /api/adoptions → Crear adopción
+- GET /api/adoptions → Obtener todas las adopciones
+- GET /api/adoptions/{id} → Obtener adopción por ID
+- PUT /api/adoptions/{id} → Actualizar adopción (con request body)
+- DELETE /api/adoptions/{id} → Eliminar adopción
+
+### 🧪 Request Body (PUT /api/adoptions/{id})
+
+El endpoint de actualización utiliza el siguiente esquema:
+
+```json
+{
+  "name": "firulais",
+  "species": "perro"
+}
+
+```
+
+
+
+
+
+🧠 Flujo completo del sistema
+Código → Tests → Docker Build → DockerHub → Pull → Run → API funcionando
+
+
+
+Ejecución completa
+
+npm install
+npm test           
+npm run test:performance
+docker build -t adoption-api:1 .
+docker run -p 3000:8080 felipe73/adoption-api:1
+
+📌Este proyecto integra:
+
+✔ API REST en Node.js
+✔ arquitectura en capas
+✔ tests funcionales, unitarios y performance
+✔ containerización con Docker
+✔ despliegue en DockerHub
+✔ documentación completa
+
+
+
+## 📊 Observaciones
+
+✔ API desarrollada siguiendo arquitectura en capas  
+✔ Tests automatizados con cobertura de rutas y lógica  
+✔ Performance estable bajo carga  
+✔ Proyecto containerizado y listo para despliegue  
