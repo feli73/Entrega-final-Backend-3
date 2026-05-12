@@ -213,8 +213,11 @@ Swagger permite visualizar y probar todos los endpoints de la API de forma inter
 
 ### 🔗 Acceso a la documentación
 
-- Local (Docker o Node):
+-Ejecución local ( Node):
   http://localhost:8080/api-docs
+
+-Ejecución con Docker:
+http://localhost:3000/api-docs
 
 ### 📌 Funcionalidades documentadas
 
