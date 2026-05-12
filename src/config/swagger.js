@@ -9,8 +9,9 @@ const swaggerOptions = {
       description: 'API REST para gestión de adopciones'
     },
     servers: [
-      { url: 'http://localhost:8080' },
-      { url: 'http://localhost:3000' }
+      {
+      url: process.env.BASE_URL || 'http://localhost:8080'
+    }
     ],
 
     components: {
